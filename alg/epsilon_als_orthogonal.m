@@ -21,6 +21,9 @@ function [U,output] = epsilon_als_orthogonal(T,U0,options)
 %      options.TolX = 1e-4        - The tolerance for output.relstep.
 
 %   Author: Yuning Yang (yyang@gxu.edu.cn)
+% Y. Yang, The Epsilon-Alternating Least Squares for Orthogonal Low-Rank
+%                   Tensor Approximation and Its Global Convergence,
+%                   http://arxiv.org/abs/1911.10921
 
 d = ndims(T);
 if d < 3, error('the order should be >= 3.'); end
