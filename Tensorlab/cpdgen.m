@@ -1,4 +1,4 @@
-function T = cpdgen(U,varargin)
+function T = cpdgen(U,varargin) 
 %CPDGEN Generate full tensor given a polyadic decomposition.
 %   T = CPDGEN(U) computes the tensor T as the sum of R rank-one tensors
 %   defined by the columns of the factor matrices U{n}.

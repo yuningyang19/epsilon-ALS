@@ -1,4 +1,4 @@
-function f = frob(T,squared)
+function f = frob(T,squared) 
 %FROB Frobenius norm
 %   FROB(T) returns the Frobenius norm of the tensor T. In the case of
 %   incomplete tensors, the weighted Frobenius norm error is used, i.e., the

@@ -1,4 +1,4 @@
-function M = tens2mat(T,mode_row,mode_col)
+function M = tens2mat(T,mode_row,mode_col) 
 %TENS2MAT Matricize a tensor.
 %   M = tens2mat(T,mode_row,mode_col) matricizes a full or sparse tensor T into
 %   a full or sparse matrix M of dimensions prod(size_tens(mode_row))-

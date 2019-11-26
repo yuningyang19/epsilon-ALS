@@ -1,4 +1,4 @@
-function T = contract(T, U, modes)
+function T = contract(T, U, modes) 
 %CONTRACT Mode-n tensor vector contraction.
 %   S = CONTRACT(T, U, modes) computes the contraction of a full or sparse
 %   tensor T with the vectors U{1}, ..., U{N} along modes mode(1), ..., mode(N)
