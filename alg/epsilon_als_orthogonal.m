@@ -29,6 +29,7 @@ d = ndims(T);
 if d < 3, error('the order should be >= 3.'); end
 if ~isfield(options,'t'),  error('there should be at least one factor matrix being columnwise orthogonal.');    end
 t = options.t;
+if t < 1, error('the number of orthonormal matrices < 1.'); end
 
 if ~isfield(options,'e1'), options.e1 = 10^(-8); end
 if ~isfield(options,'e2'), options.e2 = 10^(-8); end
@@ -52,14 +53,6 @@ if ~isfield(options,'TolX'), options.TolX = 1e-5; end
 
 
 M = arrayfun(@(n)tens2mat(T,n).',1:d,'UniformOutput',false);
-
-
-first = options.Order(1);
-last = options.Order(end);
-D = kr(U([d:-1:first+1 first-1:-1:1]));
-
-D = M{first}-D*U{first}.';
-
 output.info = false;
 output.iterations = 0;
 output.relstep = [];
