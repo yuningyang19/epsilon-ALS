@@ -1,4 +1,4 @@
-function [ Uout ] = column_matching( U,Uhat )
+function [ Uout ] = column_matching( U,Uhat ) 
  % the columns of Uhat might be misplaced, and we need to adjust the place
  % of these columns according to U.
  R = size(U,2);

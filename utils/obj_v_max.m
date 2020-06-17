@@ -1,4 +1,4 @@
-function [ v ] = obj_v_max( A,U )
+function [ v ] = obj_v_max( A,U ) 
 %OBJ_V_MAX Summary of this function goes here
 %   Detailed explanation goes here
 

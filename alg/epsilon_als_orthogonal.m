@@ -1,4 +1,4 @@
-function [U,output] = epsilon_als_orthogonal(T,U0,options)
+function [U,output] = epsilon_als_orthogonal(T,U0,options) 
 % epsilon ALS for solving tensor CPD where the last t latent factor
 % matrices are assumed to be columnwisely orthonormal.
 %   [U,output] = epsilon_als_orthogonal(T,U0) computes the factor matrices

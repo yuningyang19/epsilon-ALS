@@ -1,5 +1,5 @@
 function [ U0 ] = get_initializer( A, t, R )
-% generate a good initializer for the perturbed ALS.
+% generate a good initializer for the epsilon-ALS.
 % t the number of columnwise orthonormal factor matrices.
 
 
