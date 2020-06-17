@@ -15,10 +15,8 @@ function [U,output] = epsilon_als_orthogonal(T,U0,options)
 %      options.e1 and optoins.e2
 %                                  - The perturbation parameters. Should be
 %                                     nonnegative.
-%      options.MaxIter = 2000      - The maximum number of iterations.
-%      options.Order = 1:d        - The order in which to update the factor
-%                                   matrices. Must be a permutation of 1:d.
-%      options.TolX = 1e-4        - The tolerance for output.relstep.
+%      options.max_iter = 2000      - The maximum number of iterations.
+%      options.tol_relstep = 1e-4        - The tolerance for output.relstep.
 
 %   Author: Yuning Yang (yyang@gxu.edu.cn)
 % Y. Yang, The Epsilon-Alternating Least Squares for Orthogonal Low-Rank
@@ -46,10 +44,8 @@ end
 if any(cellfun('size',U,1) ~= size(T))
     error('the row size of the factor matrices should be equal to the size of the data tensor.');
 end
-if ~isfield(options,'MaxIter'), options.MaxIter = 2000; end
-if ~isfield(options,'Order'), options.Order = 1:d; end
-if ~isfield(options,'TolFun'), options.TolFun = 1e-5; end
-if ~isfield(options,'TolX'), options.TolX = 1e-5; end
+if ~isfield(options,'max_iter'), options.max_iter = 2000; end
+if ~isfield(options,'tol_relstep'), options.tol_relstep = 1e-4; end
 
 
 M = arrayfun(@(n)tens2mat(T,n).',1:d,'UniformOutput',false);
@@ -95,8 +91,8 @@ while ~output.info
     
     output.relstep(end+1) = sqrt(sum(cellfun(@(u,v)(u(:)-v(:))'* ...
         (u(:)-v(:)),U,U1)))/sqrt(sum(cellfun(@(u)u(:)'*u(:),U)));
-    if output.relstep(end) <= options.TolX, output.info = 1; end
-    if output.iterations >= options.MaxIter, output.info = 2; end
+    if output.relstep(end) <= options.tol_relstep, output.info = 1; end
+    if output.iterations >= options.max_iter, output.info = 2; end
     
 end
 
