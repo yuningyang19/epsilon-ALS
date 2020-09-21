@@ -1,7 +1,7 @@
 function [ Uout ] = column_matching( U,Uhat ) 
  % the columns of Uhat might be misplaced, and we need to adjust the place
  % of these columns according to U.
- R = size(U,2);
+ % R = size(U,2);
  
  decision_mat = U'*Uhat;   % e.g., row 1 of decisoin_mat denotes the 
  % closedness of the first column of Uhat to every column of U.

@@ -85,6 +85,12 @@ while ~output.info
         Vn = Tn*krUn;      % line 10 of the paper, update the V_j's simultaneously by using KR prod..
         tilde_Vn = Vn*Omega + e2*U{n};    % line 5 of the paper. Omega = diag(omega_i^k)
         U{n} = polar_decomp(tilde_Vn);
+        
+        if n == 1  % update Omega
+            squared_sigma_n = dot(U{n},Vn);      % the <U{n}_i,Vn_i> is exactly sigma_i, if n=1.
+            norm_sigma_n = norm(squared_sigma_n); % ||sigma||
+            Omega = diag(  squared_sigma_n/norm_sigma_n   ); % Omega = diag( omega_i   ) = diag( sigma_i/||sigma|| )
+        end
     end
     
     output.iterations = output.iterations+1;
