@@ -48,7 +48,7 @@ if ~isfield(options,'max_iter'), options.max_iter = 2000; end
 if ~isfield(options,'tol_relstep'), options.tol_relstep = 1e-4; end
 
 
-M = arrayfun(@(n)tens2mat(T,n).',1:d,'UniformOutput',false);
+M = arrayfun(@(n)tens2mat(T,n),1:d,'UniformOutput',false);
 output.info = false;
 output.iterations = 0;
 output.relstep = [];
@@ -61,8 +61,8 @@ while ~output.info
     for n = 1: d-t          % Update non-orthogonal factor matrices.
         
         krUn = kr(U([d:-1:n+1 n-1:-1:1])); % KR product of the other factor matrices.
-        Tn = M{n}';        % the mode-n unfolding of the tensor T, Mn: n_1\times produ_{j\neq 1}n_j
-        Vn = Tn*krUn;      % line 4 of the paper, update the V_j's simultaneously by using KR prod..
+%         Tn = M{n}';        % the mode-n unfolding of the tensor T, Mn: n_1\times produ_{j\neq 1}n_j
+        Vn = M{n}*krUn;      % line 4 of the paper, update the V_j's simultaneously by using KR prod..
         
         if n == 1  % update Omega
             squared_sigma_n = dot(U{n},Vn);      % the <U{n}_i,Vn_i> is exactly sigma_i, if n=1.
@@ -81,8 +81,8 @@ while ~output.info
     end
     for n = d-t+1: d %   Factors related to polar decomp.
         krUn = kr(U([d:-1:n+1 n-1:-1:1])); % KR product of the other factor matrices.
-        Tn = M{n}';        % the mode-n unfolding of the tensor T, Mn: n_1\times produ_{j\neq 1}n_j
-        Vn = Tn*krUn;      % line 10 of the paper, update the V_j's simultaneously by using KR prod..
+%         Tn = M{n}';        % the mode-n unfolding of the tensor T, Mn: n_1\times produ_{j\neq 1}n_j
+        Vn = M{n}*krUn;      % line 10 of the paper, update the V_j's simultaneously by using KR prod..
         tilde_Vn = Vn*Omega + e2*U{n};    % line 5 of the paper. Omega = diag(omega_i^k)
         U{n} = polar_decomp(tilde_Vn);
         
